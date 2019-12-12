@@ -12,15 +12,16 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Message implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @EmbeddedId
+    private MessageId id;
     private String objet;
     private String contenu;
     private String etat;
-    @OneToOne(mappedBy = "message",fetch=FetchType.EAGER,cascade={CascadeType.MERGE,CascadeType.REMOVE})
+    @MapsId("ClientId")
+    @ManyToOne
     private Client client;
-    @OneToOne(mappedBy = "message",fetch=FetchType.EAGER,cascade={CascadeType.MERGE,CascadeType.REMOVE})
+    @MapsId("TransactionId")
+    @ManyToOne
     private Transaction transaction;
 
 }

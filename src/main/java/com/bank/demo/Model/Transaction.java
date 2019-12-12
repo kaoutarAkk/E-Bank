@@ -6,7 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -16,12 +17,12 @@ public class Transaction implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long numTransaction;
-    private Date sateTransaction;
+    private String dateTransaction;
+    private String type;
     private double montant;
     @ManyToOne
-    private Client client;
-    @OneToOne
-    private Message message;
+    private Compte compte;
+    @OneToMany(mappedBy = "transaction")
+    private List<Message> messages = new ArrayList<>();
 
 }

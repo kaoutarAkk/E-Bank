@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Data
@@ -18,6 +19,8 @@ public class Compte implements Serializable {
     private Long numCompte;
     private double solde;
     private String typeCompte;
+    @OneToMany(mappedBy = "compte")
+    private List<Transaction> transactions;
     @ManyToOne
     private Client client;
 }
