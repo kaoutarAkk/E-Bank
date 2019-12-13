@@ -1,5 +1,6 @@
 package com.bank.demo.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,7 +23,8 @@ public class Transaction implements Serializable {
     private double montant;
     @ManyToOne
     private Compte compte;
+    @JsonIgnore
     @OneToMany(mappedBy = "transaction")
-    private List<Message> messages = new ArrayList<>();
+    private List<Message> messages;
 
 }

@@ -1,5 +1,6 @@
 package com.bank.demo.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,7 @@ public class Compte implements Serializable {
     private double solde;
     private String typeCompte;
     @OneToMany(mappedBy = "compte")
+    @JsonIgnore
     private List<Transaction> transactions;
     @ManyToOne
     private Client client;
