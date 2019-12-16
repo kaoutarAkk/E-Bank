@@ -31,15 +31,22 @@ public class LoginService {
 
     }
 
+    public void saveLogin(Login login){
+        loginRepository.save(login);
+    }
+
     public List<Login> findAll(){
         return loginRepository.findAll();
     }
 
-    public boolean passCheck(String email,String password){
+    public boolean passCheck(String email,String password) {
 
         Login l = loginRepository.getByEmail(email);
         String pass = l.getPassword();
-        return bCryptPasswordEncoder.matches(password,pass);
+        return bCryptPasswordEncoder.matches(password, pass);
 
+    }
+    public void deleteLoginById(Long id){
+        loginRepository.deleteById(id);
     }
 }

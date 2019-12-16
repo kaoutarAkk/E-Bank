@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ClientService {
@@ -16,10 +15,6 @@ public class ClientService {
     ClientRepository clientRepository;
     @Autowired
     LoginRepository loginRepository;
-
-    public Client saveClient(Client client){
-        return clientRepository.save(client);
-    }
 
     public Client getByLoginId(Long id){
         return clientRepository.getByLogin_Id(id);
@@ -33,10 +28,28 @@ public class ClientService {
         return clientRepository.existsByLoginId(id);
     }
 
+
 //
 //    public List<Client> getAll(){
 //        return clientRepository.findAll();
 //    }
+
+    public void saveClient(Client client){
+         clientRepository.save(client);
+    }
+
+    public void deleteClientById(Long id){
+        clientRepository.deleteById(id);
+    }
+
+    public Client getById(Long id){
+        return clientRepository.getById(id);
+    }
+
+    public List<Client> getAllClients(){
+        return clientRepository.findAll();
+    }
+
 //    public Optional<Client> findByid(Long id) {
 //        Optional<Client> cl;
 //        cl=clientRepository.findById(id);

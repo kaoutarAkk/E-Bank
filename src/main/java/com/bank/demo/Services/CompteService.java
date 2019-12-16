@@ -23,4 +23,12 @@ public class CompteService {
     public Compte getCompteByNum(Long num){
         return compteRepository.getByNumCompte(num);
     }
+
+    public void deleteCompteById(Long id){
+        compteRepository.deleteById(id);
+    }
+
+    public void saveCompte(Compte compte) {
+        compteRepository.save(compte);
+    }
 }

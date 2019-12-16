@@ -1,5 +1,6 @@
 package com.bank.demo.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,6 +24,8 @@ public class Client implements Serializable {
     private String dateNaissance;
     @OneToOne(mappedBy = "client")
     private Compte compte;
+
+    @JsonIgnore
     @OneToMany(mappedBy = "client")
     private List<Message> messages;
 
