@@ -21,9 +21,9 @@ public class Client implements Serializable {
     private Login login;
     private Long phone_number;
     private String dateNaissance;
-    @OneToMany(mappedBy = "client")
-    private List<Compte> comptes;
     @OneToOne(mappedBy = "client")
+    private Compte compte;
+    @OneToMany(mappedBy = "client")
     private List<Message> messages;
 
 }

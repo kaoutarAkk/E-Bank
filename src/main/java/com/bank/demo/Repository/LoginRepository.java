@@ -9,4 +9,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @RepositoryRestResource
 public interface LoginRepository extends JpaRepository<Login,Long> {
     public Login findByEmailAndAndPassword(String email,String password);
+    public Login getByEmail(String email);
+    boolean existsByEmail(String email);
 }
