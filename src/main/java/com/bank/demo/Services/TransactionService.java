@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
+import java.util.List;
 
 @Service
 public class TransactionService {
@@ -71,5 +72,9 @@ public class TransactionService {
 
             return true;
         }
+    }
+
+    public List<Transaction> getTransactionsbyCompte(Long compte_id){
+        return transactionRepository.findTransactionsByAccount(compte_id);
     }
 }

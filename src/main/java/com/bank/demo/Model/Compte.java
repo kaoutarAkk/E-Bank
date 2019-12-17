@@ -20,7 +20,8 @@ public class Compte implements Serializable {
     private Long numCompte;
     private double solde;
     private String typeCompte;
-    @OneToMany(mappedBy = "compte")
+    @JsonIgnore
+    @OneToMany
     private List<Transaction> transactions;
     @JsonIgnore
     @OneToOne

@@ -21,7 +21,6 @@ public class Transaction implements Serializable {
     private String dateTransaction;
     private String type;
     private double montant;
-    @ManyToOne
     private Compte compte;
     @JsonIgnore
     @OneToMany(mappedBy = "transaction")

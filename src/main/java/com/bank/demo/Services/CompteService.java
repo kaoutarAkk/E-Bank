@@ -24,6 +24,14 @@ public class CompteService {
         return compteRepository.getByNumCompte(num);
     }
 
+
+    public Compte getCilentCompte(Long client_id) {
+        Compte compte = compteRepository.findComptesByClient(client_id);
+
+        return compte;
+    }
+
+
     public void deleteCompteById(Long id){
         compteRepository.deleteById(id);
     }
@@ -31,4 +39,5 @@ public class CompteService {
     public void saveCompte(Compte compte) {
         compteRepository.save(compte);
     }
+
 }

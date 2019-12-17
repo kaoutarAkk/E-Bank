@@ -3,10 +3,9 @@ package com.bank.demo.Controller;
 import com.bank.demo.Model.Transaction;
 import com.bank.demo.Services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin("*")
 @RestController
@@ -23,5 +22,12 @@ public class TransactionController {
     @RequestMapping("ajouterRecharge")
     public boolean newRecharge(@RequestParam("compte")Long compte,@RequestParam("benif")Long numT,@RequestParam("montant")double montant,@RequestParam("op")String operateur){
         return transactionService.addRecharge(compte,numT,montant,operateur);
+    }
+
+
+    @GetMapping(value = "getaccountTransactions")
+    public List<Transaction> getAllAccountTransactions(@RequestParam("compte_id") Long compte_id){
+        return transactionService.getTransactionsbyCompte(compte_id);
+
     }
 }

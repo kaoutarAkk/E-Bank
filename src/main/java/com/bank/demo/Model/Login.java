@@ -1,6 +1,5 @@
 package com.bank.demo.Model;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
