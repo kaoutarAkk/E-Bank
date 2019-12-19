@@ -1,0 +1,50 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="com/operation/demo/generated" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="com/operation/demo/generated" targetNamespace="com/operation/demo/generated">
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="com/operation/demo/generated" version="1.0">
+            <xsd:element name="RechargeRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="0" name="numero" type="xsd:string"/>
+                        <xsd:element name="montant" type="xsd:double"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="RechargeResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="0" name="return" type="xsd:boolean"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="RechargeRequest">
+        <wsdl:part element="tns:RechargeRequest" name="RechargeRequest"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="RechargeResponse">
+        <wsdl:part element="tns:RechargeResponse" name="RechargeResponse"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="RechargePort">
+        <wsdl:operation name="Recharge">
+            <wsdl:input message="tns:RechargeRequest" name="RechargeRequest"> </wsdl:input>
+            <wsdl:output message="tns:RechargeResponse" name="RechargeResponse"> </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="RechargePortSoap11" type="tns:RechargePort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="Recharge">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="RechargeRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="RechargeResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="RechargePortService">
+        <wsdl:port binding="tns:RechargePortSoap11" name="RechargePortSoap11">
+            <soap:address location="http://localhost:8088/ws"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @RepositoryRestResource
 public interface ClientRepository extends JpaRepository<Client,Long> {
 
+
     Client getById(Long id);
 
     public Client getByLogin_Id(Long id);

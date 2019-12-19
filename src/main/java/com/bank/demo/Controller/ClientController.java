@@ -6,10 +6,16 @@ import com.bank.demo.Services.ClientService;
 import com.bank.demo.Services.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import com.bank.demo.Model.Compte;
 import com.bank.demo.Services.CompteService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+
+import java.util.List;
+
+
 @CrossOrigin("*")
 @RestController
 @RequestMapping("clients")
@@ -19,8 +25,10 @@ public class ClientController {
     ClientService clientService;
     @Autowired
     LoginService loginService;
+
     @Autowired
     CompteService compteService;
+
 
 
     @RequestMapping("/byloginId")
@@ -33,6 +41,7 @@ public class ClientController {
         Login l =loginService.findbyEmail(email);
        return clientService.getByLogin(l) ;
     }
+
     @RequestMapping("/allClients")
     public List<Client> getAllCLients(){
         return clientService.getAllClients();

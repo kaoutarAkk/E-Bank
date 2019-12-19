@@ -21,7 +21,7 @@ public class Compte implements Serializable {
     private double solde;
     private String typeCompte;
     @JsonIgnore
-    @OneToMany
+    @OneToMany(mappedBy = "compte")
     private List<Transaction> transactions;
     @JsonIgnore
     @OneToOne

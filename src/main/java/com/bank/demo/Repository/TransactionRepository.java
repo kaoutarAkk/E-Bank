@@ -15,4 +15,5 @@ public interface TransactionRepository extends JpaRepository<Transaction,Long> {
 
     @Query("SELECT t FROM Transaction t WHERE compte_id = ?1")
     List<Transaction> findTransactionsByAccount(Long compte_id);
+
 }

@@ -16,6 +16,11 @@ public class ClientService {
     @Autowired
     LoginRepository loginRepository;
 
+
+    public Client saveClient(Client client){
+        return clientRepository.save(client);
+    }
+
     public Client getByLoginId(Long id){
         return clientRepository.getByLogin_Id(id);
     }
@@ -34,9 +39,6 @@ public class ClientService {
 //        return clientRepository.findAll();
 //    }
 
-    public void saveClient(Client client){
-         clientRepository.save(client);
-    }
 
     public void deleteClientById(Long id){
         clientRepository.deleteById(id);
