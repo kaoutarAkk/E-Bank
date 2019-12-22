@@ -6,9 +6,11 @@ import com.bank.demo.Repository.CompteRepository;
 import com.bank.demo.Services.CompteService;
 import com.bank.demo.Services.TransactionService;
 //import com.bank.demo.wsdl.Recharge;
+import com.bank.demo.config.MessagingConfiguration;
 import com.bank.demo.wsdl.RechargeRequest;
 import com.bank.demo.wsdl.RechargeResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,12 +43,15 @@ public class TransactionController {
     @PostMapping("ajouterRechargeWS")
     public RechargeResponse newRechargeResp(@RequestBody RechargeRequest recharge,@RequestParam("compte")Long compte){
         Compte c = compteService.getCompteByNum(compte);
+        JmsTemplate jms = new MessagingConfiguration().jmsTemplate();
         RechargeResponse rs=new RechargeResponse();
         if(c.getSolde() > recharge.getMontant()){
             rs=transactionService.getRechargeResponse(recharge);
             if(rs.isReturn()){
                  transactionService.addRecharge(compte,Long.parseLong(recharge.getNumero()),recharge.getMontant());
             }
+            String s = (String) jms.receiveAndConvert(MessagingConfiguration.MESSAGE_QUEUE);
+            System.out.println(s);
         }
        return rs;
     }

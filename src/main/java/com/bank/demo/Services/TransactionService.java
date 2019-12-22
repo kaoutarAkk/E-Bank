@@ -6,9 +6,11 @@ import com.bank.demo.Repository.ClientRepository;
 import com.bank.demo.Repository.CompteRepository;
 import com.bank.demo.Repository.TransactionRepository;
 /*import com.bank.demo.wsdl.Recharge;*/
+import com.bank.demo.config.MessagingConfiguration;
 import com.bank.demo.wsdl.RechargeRequest;
 import com.bank.demo.wsdl.RechargeResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.stereotype.Service;
 import org.springframework.ws.client.core.WebServiceTemplate;
@@ -66,6 +68,7 @@ public class TransactionService {
 
     public boolean addRecharge(Long compte, Long numT, double montant) {
         Compte compte1 = compteRepository.getByNumCompte(compte);
+
 
                 compte1.setSolde(compte1.getSolde() - montant);
                 compteRepository.save(compte1);
